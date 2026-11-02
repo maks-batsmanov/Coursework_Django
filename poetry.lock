@@ -38,6 +38,24 @@ argon2 = ["argon2-cffi (>=23.1.0)"]
 bcrypt = ["bcrypt (>=4.1.1)"]
 
 [[package]]
+name = "django-bootstrap5"
+version = "26.4"
+description = "Bootstrap 5 for Django"
+optional = false
+python-versions = ">=3.11"
+groups = ["main"]
+files = [
+    {file = "django_bootstrap5-26.4-py3-none-any.whl", hash = "sha256:252aba43c7bc3bde363a77bc7d0cf27c7b337afe30dfd32e90bce8961c505198"},
+    {file = "django_bootstrap5-26.4.tar.gz", hash = "sha256:33b6b13096ac22220a84615f389886df19b49508b1e5a6360dd26e8b7b5606fe"},
+]
+
+[package.dependencies]
+django = ">=5.2"
+
+[package.extras]
+jinja = ["jinja2 (>=3.0,<4)"]
+
+[[package]]
 name = "psycopg2-binary"
 version = "2.9.13"
 description = "psycopg2 - Python-PostgreSQL Database Adapter"
@@ -161,4 +179,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.13"
-content-hash = "1cac9d5330802be3fa1f1156133eaae97ef3096f1fb36ca990909937cf189949"
+content-hash = "0583b9e8162d6befa26c1b31edfd3bf13de68a86b3f9d8967aef7b4e48f85423"
