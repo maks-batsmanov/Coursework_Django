@@ -8,9 +8,9 @@ class FormRecipient(forms.ModelForm):
         fields = ['full_name', 'email', 'comment']
 
 
-        # labels = {
-        #     'full_name': 'Имя и фамилию',
-        #     'email': 'E-mail',
-        #     'comment': 'Комментарий',
-        # }
+class FormMessage(forms.ModelForm):
+    class Meta:
+        model = Message
+        fields = ['subject', 'body']
+
 
