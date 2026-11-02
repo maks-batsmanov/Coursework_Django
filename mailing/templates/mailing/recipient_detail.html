@@ -21,7 +21,7 @@
                 </dl>
             </div>
             <div class="card-footer d-flex justify-content-between bg-white">
-                <a href="{% url 'mailing:recipients_list' %}" class="btn btn-outline-secondary">Назад</a>
+                <a href="{% url 'mailing:recipient_list' %}" class="btn btn-outline-secondary">Назад</a>
                 <div>
                     <a href="{% url 'mailing:recipient_update' recipient.pk %}" class="btn btn-primary">Редактировать</a>
                     <a href="{% url 'mailing:recipient_delete' recipient.pk %}" class="btn btn-outline-danger">Удалить</a>

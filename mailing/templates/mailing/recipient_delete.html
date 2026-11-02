@@ -19,10 +19,10 @@
                 </dl>
             </div>
             <div class="card-footer d-flex justify-content-between bg-white">
-                <a href="{% url 'mailing:recipients_list' %}" class="btn btn-outline-secondary"> Отмена</a>
+                <a href="{% url 'mailing:recipient_list' %}" class="btn btn-outline-secondary">Отмена</a>
                 <form method="post" class="d-inline">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger"> Удалить</button>
+                    <button type="submit" class="btn btn-danger">Удалить</button>
                 </form>
             </div>
         </div>
