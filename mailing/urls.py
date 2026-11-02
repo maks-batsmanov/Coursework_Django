@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RecipientCreateView, RecipientUpdateView, RecipientListView, RecipientDeleteView, RecipientDetailView
+from .views import *
 
 
 app_name = 'mailing'
