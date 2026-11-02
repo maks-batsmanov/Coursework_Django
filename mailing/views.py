@@ -1,10 +1,15 @@
 from datetime import timezone
-
+from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
 from .forms import *
 from django.utils import timezone
-from .models import Recipient, Message, Mailing
+from .models import *
+from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect
+from .services import send_mailing
+
+
 
 
 class HomeView(TemplateView):
@@ -123,3 +128,27 @@ class MailingDeleteView(DeleteView):
     template_name = 'mailing/delete.html'
     context_object_name = 'mailing'
     success_url = reverse_lazy('mailing:list')
+
+
+class SendMailingView(View):
+    def post(self, request, pk):
+        mailing = get_object_or_404(Mailing, pk=pk)
+        result = send_mailing(mailing)
+
+        if result['error']:
+            messages.error(request, f"Ошибка: {result['error']}")
+        else:
+            messages.success(
+                request,
+                f"Рассылка завершена. Успешно: {result['success']}, "
+                f"Не успешно: {result['failed']}"
+            )
+        return redirect('mailing:detail', pk=pk)
+
+
+class MailingLogListView(ListView):
+    model = MailingLog
+    template_name = 'mailing/attempt_list.html'
+    context_object_name = 'logs'
+    paginate_by = 20
+    ordering = ['-datetime']
