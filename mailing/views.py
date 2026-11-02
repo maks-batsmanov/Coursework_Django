@@ -1,8 +1,26 @@
-from django.urls import reverse_lazy
-from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView
-from .forms import *
+from datetime import timezone
 
+from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
+from .forms import *
+from django.utils import timezone
 from .models import Recipient, Message, Mailing
+
+
+class HomeView(TemplateView):
+    template_name = 'home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        now = timezone.now()
+
+        context['total_mailings'] = Mailing.objects.count()
+        context['total_recipients'] = Recipient.objects.count()
+        context['active_mailings'] = sum(
+            1 for m in Mailing.objects.all()
+            if m.start_time <= now <= m.end_time and m.status == 'Запущена'
+        )
+        return context
 
 
 class RecipientCreateView(CreateView):

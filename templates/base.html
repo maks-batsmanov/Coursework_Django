@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 {% load django_bootstrap5 %}
 <html lang="ru">
@@ -14,20 +13,20 @@
     <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand">📨 Сервис рассылок</a>
+            <a class="navbar-brand" href="{% url 'home' %}">📨 Сервис рассылок</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" >Получатели</a>
+                        <a class="nav-link" href="{% url 'mailing:recipient_list' %}">Получатели</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" >Сообщения</a>
+                        <a class="nav-link" href="{% url 'mailing:message_list' %}">Сообщения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" >Рассылки</a>
+                        <a class="nav-link" href="{% url 'mailing:list' %}" >Рассылки</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" >Попытки</a>

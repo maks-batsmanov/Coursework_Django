@@ -36,19 +36,19 @@ class FormMessage(forms.ModelForm):
 class FormMailing(forms.ModelForm):
     class Meta:
         model = Mailing
-        fields = ['start_time', 'end_time', 'status', 'message', 'recipient']
+        fields = ['start_time', 'end_time', 'status', 'message', 'recipients']
 
         widgets = {
             'start_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'end_time': forms.DateTimeInput(attrs={'class': 'form-control', 'type': 'datetime-local'}),
             'status': forms.Select(attrs={'class': 'form-select'}),
             'message': forms.Select(attrs={'class': 'form-select'}),
-            'recipient': forms.SelectMultiple(attrs={'class': 'form-select'}),
+            'recipients': forms.SelectMultiple(attrs={'class': 'form-select'}),
         }
         labels = {
             'start_time': 'Дата и время начала',
             'end_time': 'Дата и время окончания',
             'status': 'Статус',
             'message': 'Сообщение',
-            'recipient': 'Получатели',
+            'recipients': 'Получатели',
         }
