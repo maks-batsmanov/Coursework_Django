@@ -28,6 +28,10 @@
             </div>
             <div class="card-footer d-flex justify-content-between bg-white">
                 <a href="{% url 'mailing:list' %}" class="btn btn-outline-secondary">Назад</a>
+                <form method="post" action="{% url 'mailing:send' mailing.pk %}" class="d-inline">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-success">Запустить</button>
+                </form>
                 <div>
                     <a href="{% url 'mailing:update' mailing.pk %}" class="btn btn-primary">Редактировать</a>
                     <a href="{% url 'mailing:delete' mailing.pk %}" class="btn btn-outline-danger">Удалить</a>
