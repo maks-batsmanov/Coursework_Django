@@ -8,14 +8,14 @@ from .models import Recipient, Message, Mailing
 class RecipientCreateView(CreateView):
     model = Recipient
     form_class = FormRecipient
-    template_name = 'mailing/form_recipient.html'
+    template_name = 'mailing/recipient_form.html'
     success_url = reverse_lazy('mailing:recipients_list')
 
 
 class RecipientUpdateView(UpdateView):
     model = Recipient
     form_class = FormRecipient
-    template_name = 'mailing/form_recipient.html'
+    template_name = 'mailing/recipient_form.html'
     success_url = reverse_lazy('mailing:recipients_list')
 
 
@@ -42,14 +42,14 @@ class RecipientDeleteView(DeleteView):
 class MessageCreateView(CreateView):
     model = Message
     form_class = FormMessage
-    template_name = 'mailing/form_message.html'
+    template_name = 'mailing/message_form.html'
     success_url = reverse_lazy('mailing:message_list')
 
 
 class MessageUpdateView(UpdateView):
     model = Message
     form_class = FormMessage
-    template_name = 'mailing/form_message.html'
+    template_name = 'mailing/message_form.html'
     success_url = reverse_lazy('mailing:message_list')
 
 
