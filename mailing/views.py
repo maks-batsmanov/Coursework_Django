@@ -9,14 +9,14 @@ class RecipientCreateView(CreateView):
     model = Recipient
     form_class = FormRecipient
     template_name = 'mailing/recipient_form.html'
-    success_url = reverse_lazy('mailing:recipients_list')
+    success_url = reverse_lazy('mailing:recipient_list')
 
 
 class RecipientUpdateView(UpdateView):
     model = Recipient
     form_class = FormRecipient
     template_name = 'mailing/recipient_form.html'
-    success_url = reverse_lazy('mailing:recipients_list')
+    success_url = reverse_lazy('mailing:recipient_list')
 
 
 class RecipientListView(ListView):
