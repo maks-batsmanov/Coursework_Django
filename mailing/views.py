@@ -3,7 +3,6 @@ from django.views import View
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, DeleteView, UpdateView, TemplateView
 from .forms import *
-from django.utils import timezone
 from .models import *
 from django.contrib import messages
 from django.shortcuts import get_object_or_404, redirect
