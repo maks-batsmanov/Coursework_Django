@@ -9,6 +9,8 @@ class Recipient(models.Model):
     email = models.EmailField(max_length=150, unique=True, verbose_name='email', help_text='Введите email')
     full_name = models.CharField(max_length=150, verbose_name='Ф.И.О.', help_text='Введите Ф.И.О.')
     comment = models.TextField(max_length=2000, blank=True, verbose_name='Комментарий', help_text='Ваш комментарий...')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='recipients', verbose_name='Владелец', null=True, blank=True)
+
 
     class Meta:
         verbose_name = 'получатель'
@@ -21,6 +23,8 @@ class Recipient(models.Model):
 class Message(models.Model):
     subject = models.CharField(max_length=150, verbose_name='Тема сообщения')
     body = models.TextField(max_length=10000, verbose_name='Тело сообщения')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='messages', verbose_name='Владелец', null=True, blank=True)
+
 
     class Meta:
         verbose_name = 'Сообщение'
@@ -47,6 +51,8 @@ class Mailing(models.Model):
     message = models.ForeignKey(Message, verbose_name='message', on_delete=models.CASCADE)
     recipients = models.ManyToManyField(Recipient, verbose_name='получатели')
     owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='mailings', verbose_name='Владелец', null=True, blank=True)
+    is_disabled = models.BooleanField(default=False, verbose_name='Отключена')
+
 
     class Meta:
         verbose_name = 'рассылка'
