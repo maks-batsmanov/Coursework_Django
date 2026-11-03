@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Пароль изменён{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Пароль изменён</h4>
+            </div>
+            <div class="card-body">
+                <p>Ваш пароль успешно изменён. Теперь вы можете войти с новым паролем.</p>
+                <a href="{% url 'users:login' %}" class="btn btn-primary">Войти</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
