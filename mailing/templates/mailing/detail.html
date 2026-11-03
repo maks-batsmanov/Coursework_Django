@@ -32,6 +32,14 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-success">Запустить</button>
                 </form>
+                {% if user.groups.all|length > 0 and user.groups.first.name == 'Менеджеры' %}
+                    <form method="post" action="{% url 'mailing:toggle_mailing' mailing.pk %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning">
+                            {% if mailing.is_disabled %}Включить{% else %}Отключить{% endif %}
+                        </button>
+                    </form>
+                {% endif %}
                 <div>
                     <a href="{% url 'mailing:update' mailing.pk %}" class="btn btn-primary">Редактировать</a>
                     <a href="{% url 'mailing:delete' mailing.pk %}" class="btn btn-outline-danger">Удалить</a>
