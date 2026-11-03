@@ -46,6 +46,7 @@ class Mailing(models.Model):
     status = models.CharField(verbose_name='Статус', max_length=20, choices=STATUS_CHOICES, default=STATUS_CREATED)
     message = models.ForeignKey(Message, verbose_name='message', on_delete=models.CASCADE)
     recipients = models.ManyToManyField(Recipient, verbose_name='получатели')
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='mailings', verbose_name='Владелец', null=True, blank=True)
 
     class Meta:
         verbose_name = 'рассылка'
@@ -133,3 +134,5 @@ class MailingLog(models.Model):
 
     def __str__(self):
         return f"Попытка для рассылки #{self.mailing.id} — {self.status}"
+
+
