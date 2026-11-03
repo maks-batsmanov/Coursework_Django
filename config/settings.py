@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'django_bootstrap5',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,7 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'mailing'
+    'mailing',
+
 ]
 
 MIDDLEWARE = [
@@ -142,3 +144,20 @@ MAILERS = {
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 DEFAULT_FROM_EMAIL = 'maks_skypro@mail.com'
+
+AUTH_USER_MODEL = 'users.CustomUser'
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'mailing:list'
+LOGOUT_REDIRECT_URL = 'users:login'
+
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            "PROTOCOL": 2,
+            "CONNECTION_POOL_KWARGS": {"protocol": 2}
+        }
+    }
+}
