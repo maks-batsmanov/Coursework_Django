@@ -5,10 +5,13 @@ from .models import Mailing, MailingLog
 
 
 def send_mailing(mailing: Mailing) -> dict:
-    """
-    Отправляет рассылку всем получателям.
-    Возвращает словарь: {'success': N, 'failed': M, 'error': '...' или None}
-    """
+
+    if mailing.is_disabled:
+        return {
+            'success': 0,
+            'failed': 0,
+            'error': 'Рассылка отключена менеджером'
+        }
     now = timezone.now()
 
     if not (mailing.start_time <= now <= mailing.end_time): # проверка что время подходящее
