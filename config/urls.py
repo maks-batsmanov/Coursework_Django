@@ -7,4 +7,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('mailing/', include('mailing.urls', namespace='mailing')),
+    path('users/', include('users.urls', namespace='users'))
 ]
