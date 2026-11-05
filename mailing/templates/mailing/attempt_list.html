@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Логи рассылок{% endblock %}
+
+{% block content %}
+<h2 class="mb-4"> Логи рассылок</h2>
+
+<div class="card shadow-sm">
+    <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Дата и время</th>
+                    <th>Рассылка</th>
+                    <th>Статус</th>
+                    <th>Ответ сервера</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for log in logs %}
+                <tr>
+                    <td>{{ log.datetime|date:"d.m.Y H:i" }}</td>
+                    <td><a href="{% url 'mailing:detail' log.mailing.pk %}">Рассылка #{{ log.mailing.pk }}</a></td>
+                    <td>
+                        {% if log.status == 'Успешно' %}
+                            <span class="badge bg-success">Успешно</span>
+                        {% else %}
+                            <span class="badge bg-danger">Не успешно</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ log.server_response|default:"—"|truncatechars:80 }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="text-center text-muted py-4">Логов пока нет</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

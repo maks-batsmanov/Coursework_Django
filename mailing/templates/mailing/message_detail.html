@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Получатель: {{ message.email }}{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Письмо</h4>
+            </div>
+            <div class="card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4">Тема</dt>
+                    <dd class="col-sm-8">{{ message.subject }}</dd>
+
+                    <dt class="col-sm-4">Текст</dt>
+                    <dd class="col-sm-8">{{ message.body }}</dd>
+                </dl>
+            </div>
+            <div class="card-footer d-flex justify-content-between bg-white">
+                <a href="{% url 'mailing:message_list' %}" class="btn btn-outline-secondary">Назад</a>
+                <div>
+                    <a href="{% url 'mailing:message_update' message.pk %}" class="btn btn-primary">Редактировать</a>
+                    <a href="{% url 'mailing:message_delete' message.pk %}" class="btn btn-outline-danger">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
